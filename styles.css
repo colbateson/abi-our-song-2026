@@ -1,0 +1,96 @@
+:root {
+  --cream: #f4eee3;
+  --paper: #fffaf1;
+  --ink: #31281f;
+  --muted: #766655;
+  --tan: #b48252;
+  --brown: #6e422b;
+  --deep: #49301f;
+  --line: rgba(91, 62, 39, .17);
+  --shadow: 0 22px 55px rgba(74, 48, 29, .14);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 8%, rgba(180, 130, 82, .13), transparent 28rem),
+    linear-gradient(180deg, #f7f1e8 0%, var(--cream) 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .13;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+
+main { width: min(100% - 32px, 760px); margin: 0 auto; }
+
+.hero { padding: 56px 0 34px; text-align: center; }
+.eyebrow, .kicker { color: var(--brown); font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.eyebrow span { display: inline-block; margin-right: 7px; font-size: .8rem; }
+h1, h2 { font-family: Iowan Old Style, Baskerville, "Times New Roman", serif; font-weight: 400; }
+h1 { margin: 14px 0 9px; font-size: clamp(2.85rem, 10vw, 5.2rem); line-height: .99; letter-spacing: -.045em; }
+.subtitle { margin: 0 0 29px; color: var(--muted); font-family: Georgia, serif; font-style: italic; font-size: 1.2rem; }
+.photo-wrap { position: relative; margin: 0; }
+.photo-wrap::before { content: ""; position: absolute; inset: 14px -9px -9px 14px; border: 1px solid rgba(110,66,43,.35); border-radius: 25px; }
+.photo-wrap img { position: relative; display: block; width: 100%; height: auto; max-height: 600px; object-fit: cover; border-radius: 22px; box-shadow: var(--shadow); }
+.intro { margin: 35px auto 0; max-width: 620px; color: #5e5043; font-family: Georgia, serif; font-size: clamp(1.06rem, 3.8vw, 1.3rem); line-height: 1.7; }
+
+.song-card { margin: 28px 0; padding: 27px; display: grid; grid-template-columns: 70px 1fr; column-gap: 17px; align-items: center; background: var(--deep); color: #fffaf1; border-radius: 22px; box-shadow: var(--shadow); }
+.record { width: 70px; height: 70px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: repeating-radial-gradient(circle, #282019 0 5px, #3b2c21 6px 7px); box-shadow: inset 0 0 0 3px rgba(255,255,255,.03); }
+.record span { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: #bd8758; color: #37251a; font: 600 .53rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: .05em; }
+.song-copy .kicker { margin: 0 0 5px; color: #d9aa78; }
+.song-copy h2 { margin: 0; font-size: clamp(1.5rem, 5vw, 2rem); line-height: 1.1; }
+.play-button { grid-column: 1 / -1; margin-top: 22px; min-height: 58px; border: 0; border-radius: 999px; background: #f3e5d3; color: #412a1d; font: 600 1rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.play-button:hover { background: #fff5e7; transform: translateY(-1px); }
+.play-button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid #d5a36f; outline-offset: 3px; }
+.play-icon { display: inline-block; width: 24px; }
+.progress-row { grid-column: 1 / -1; display: grid; grid-template-columns: 38px 1fr 38px; gap: 9px; align-items: center; margin-top: 18px; color: #d9cbbc; font-size: .7rem; font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; accent-color: #d5a36f; cursor: pointer; }
+audio { display: none; }
+.player-note, .audio-error { grid-column: 1 / -1; margin: 13px 0 0; text-align: center; color: #d9cbbc; font: italic .9rem/1.5 Georgia, serif; }
+.audio-error { color: #ffd2bf; }
+
+.lyrics { margin: 24px 0 0; background: rgba(255,250,241,.7); border: 1px solid var(--line); border-radius: 19px; overflow: hidden; }
+.lyrics summary { padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none; color: var(--deep); font-family: Georgia, serif; font-size: 1.08rem; }
+.lyrics summary::-webkit-details-marker { display: none; }
+.chevron { font-family: sans-serif; font-size: 1.5rem; transition: transform .25s ease; }
+.lyrics[open] .chevron { transform: rotate(180deg); }
+.lyrics-inner { padding: 5px 24px 35px; border-top: 1px solid var(--line); }
+.lyrics-inner > h2 { margin: 32px 0 35px; text-align: center; font-size: clamp(1.7rem, 5vw, 2.25rem); }
+.lyrics section { margin: 0 auto 32px; max-width: 620px; }
+.lyrics h3 { margin: 0 0 10px; color: var(--brown); font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; }
+.lyrics p { margin: 0; color: #504438; font-family: Georgia, serif; font-size: clamp(.97rem, 3.2vw, 1.06rem); line-height: 1.85; }
+
+.letter { padding: 62px 0 55px; text-align: center; }
+.ornament { display: block; margin-bottom: 13px; color: var(--tan); font-size: .85rem; }
+.letter h2 { margin: 0 0 23px; font-size: clamp(2rem, 8vw, 3.4rem); letter-spacing: -.03em; }
+.letter p { margin: 0; color: var(--muted); font-family: Georgia, serif; font-size: 1.1rem; line-height: 1.7; }
+.letter strong { color: var(--brown); font-size: 1.3rem; font-style: italic; font-weight: 400; }
+footer { padding: 26px 16px 32px; border-top: 1px solid var(--line); color: #8a7764; text-align: center; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
+footer span { padding: 0 8px; color: var(--tan); }
+
+@media (max-width: 520px) {
+  main { width: min(100% - 24px, 760px); }
+  .hero { padding-top: 38px; }
+  .wide-only { display: none; }
+  .photo-wrap::before { inset: 9px -5px -6px 9px; }
+  .photo-wrap img { border-radius: 17px; }
+  .song-card { padding: 22px 18px; grid-template-columns: 58px 1fr; column-gap: 13px; border-radius: 18px; }
+  .record { width: 58px; height: 58px; }
+  .song-copy h2 { font-size: 1.35rem; }
+  .lyrics summary { padding: 20px; }
+  .lyrics-inner { padding-inline: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
